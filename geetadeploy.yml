@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: sample-geeta-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-geeta-app
+  template:
+    metadata:
+      labels:
+        app: sample-geeta-app
+    spec:
+      containers:
+      - name: sample-geeta-app-container
+        image: nish1102/a24340c9544c:latest  # Specify the tag explicitly
+        ports:
+        - containerPort: 80
+        resources:
+          limits:
+            memory: "128Mi"  # Adjust as per your requirements
+            cpu: "100m"      # Adjust as per your requirements
+        livenessProbe:
+          httpGet:
+            path: /  # Adjust the path based on your application
+            port: 80
+          initialDelaySeconds: 3
+          periodSeconds: 3
+        readinessProbe:
+          httpGet:
+            path: /  # Adjust the path based on your application
+            port: 80
+          initialDelaySeconds: 5
+          periodSeconds: 5

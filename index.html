@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Make the CSS rules more specific to override other styles */
+        .container main {
+            max-height: 80vh; /* Adjust this value as needed */
+            overflow-y: auto;
+        }
+    </style>
+    <title>Bhagavad Gita</title>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Bhagavad Gita</h1>
+        </header>
+        <main>
+            <p>The Bhagavad Gita teaches us the mastery of our own minds, the importance of pursuing our dharma truthfully and unapologetically, and how to embrace life for what it is.</p>
+            <p id="blinkingText" class="blinking-text">
+                "Yada yada hi dharmasya glaanirbhavati bhaarat<br>
+                Abhyutthaanam adharmasya tadaatmaanam srijaamyaham<br>
+                Paritranaay saadhunaam vinaashaay cha dushkritaam<br>
+                Dharm sansthaapanaarthaay sambhavaami yuge yuge"
+            </p>
+            <p>
+                Translation: "Whenever there is a decline in righteousness and an increase in unrighteousness, O Bharata (Arjuna), at that time I manifest myself on earth.<br>
+                To protect the righteous, to annihilate the wicked, and to reestablish the principles of dharma (righteousness), I appear millennium after millennium."
+            <br>
+            <button id="readButton" class="hover-green-button">Read Gita</button>
+            </p>
+        </main>
+        <div class="marquee-container">
+            <marquee class="marquee" behavior="scroll" direction="left" scrollamount="5" style="color: rosybrown;">
+                &copy; Nishant 2023. All rights reserved.
+            </marquee>
+        </div>
+        <br>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

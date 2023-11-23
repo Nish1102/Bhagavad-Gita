@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhagavad Gita Sloka</title>
+    <style>
+                 body {
+    text-align: center;
+    background-image: url('img/geeta1.jpeg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: black;
+    margin: 0;
+    position: relative;
+    overflow: hidden;
+}
+
+.content {
+    height: 100vh; /* Set the height to the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px) brightness(1.2) sepia(0.3); /* Apply a light blue blur effect */
+    background-color: rgba(144, 198, 216, 0.5); /* Background color for better readability */
+    overflow-y: auto; /* Add vertical scroll when necessary */
+    padding: 20px; /* Add padding for spacing */
+    box-sizing: border-box; /* Include padding and borders in the element's total width and height */
+}
+
+
+#sloka-container {
+    max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+    font-size: 14px; /* Adjust the font size to your preference */
+}
+
+
+
+button {
+    margin-top: 10px; /* Adjust the margin as needed */
+}
+
+        /* Rest of your existing CSS styles */
+
+        #sloka-text {
+            font-weight: bold;
+            font-size: 14px; /* Adjust the font size to your preference */
+            color:  rgb(134, 56, 8); /* Change text color for better visibility on the background */
+        }
+        .translation-text {
+            font-weight: bold;
+            font-size: 14px; /* Adjust the font size to your preference */
+            color: rgb(134, 56, 8); /* Change text color for better visibility on the background */
+        }
+        #author-text {
+            font-size: 14px; /* Adjust the font size to your preference */
+            color: #555;
+        }
+        #chapter-verse-input {
+            margin: 10px;
+        }
+        #fetch-button {
+            display: inline-block;
+    color: #fff;
+    padding: 8px 16px; /* Adjust padding to make the buttons smaller */
+    font-size: 14px; /* Adjust font size to make the text smaller */
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #2e4ecc, #2e4ecc); /* Green gradient */
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+        }
+        #fetch-button:hover {
+            background: linear-gradient(to bottom, #2ecc71, #27ae60); /* Keep the same green gradient on hover */
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+        }
+       
+
+        /* Make the buttons responsive using percentages */
+        /* Rest of your existing CSS styles */
+
+/* Make the buttons smaller */
+.button-container {
+    text-align: center; /* Center the buttons horizontally within the container */
+}
+
+.button {
+    display: inline-block;
+    margin: 5px; /* Add some margin between the buttons to create spacing */
+    color: #fff;
+    padding: 8px 16px;
+    font-size: 14px;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(to bottom, #2e4ecc, #2e4ecc);
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s, transform 0.2s, box-shadow 0.2s;
+}
+
+.button:hover {
+    background: linear-gradient(to bottom, #2ecc71, #27ae60);
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+        /* Add responsive font size for other elements if needed */
+        h1 {
+            font-size: 4vw; /* Adjust font size using viewport width */
+        }
+
+        p {
+            font-size: 2vw; /* Adjust font size using viewport width */
+        }
+
+        /* Add responsive styles for the fold animation */
+        #fold {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            pointer-events: none;
+            animation: fold 0.5s ease both;
+            transform-origin: top;
+        }
+
+        #folded-content {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: white;
+            padding: 2%;
+            border-top: 1px solid rgba(0, 0, 0, 0.2);
+            z-index: 3;
+        }
+
+        @keyframes fold {
+            0% {
+                height: 0;
+                transform: scaleY(0);
+            }
+            100% {
+                height: 100%;
+                transform: scaleY(1);
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h1>Bhagavad Gita Shloka </h1>
+        <div id="sloka-container">
+            <div>
+                <label for="chapter-select">Chapter:</label>
+                <select id="chapter-select">
+                    <!-- Dynamically populate chapter options using JavaScript -->
+                </select>
+                <label for="verse-input">Verse:</label>
+                <input type="number" id="verse-input" placeholder="e.g., 1" min="1" max="20">
+                <button id="fetch-button">Read</button>
+            </div>
+            <p id="sloka-text">Loading...</p>
+            <!-- Tej Translation -->
+            <p id="translation-text-tej" class="translation-text"></p>
+            <p id="author-text-tej"></p>
+            <!-- San Translation -->
+            <p id="translation-text-san" class="translation-text"></p>
+            <p id="author-text-san"></p>
+           
+        </div>
+        
+        <div id="button-container">
+            <button class="button" id="prev-button">Previous</button>
+            <button class="button" id="play-pause-button">Play Flute</button>
+            <button class="button" id="next-button">Next</button>
+            <button class="button" id="back-home-button">Back Home</button>
+        </div>
+        <br>
+    </div>
+    
+
+    <!-- Add buttons for navigation -->
+<!-- Your existing HTML content -->
+
+<!-- Wrap the buttons in a div -->
+
+
+    
+    
+
+    
+<audio id="bg-music" preload="auto">
+    <source src="img/geeta.mp3" type="audio/mp3">
+    
+</audio>
+
+
+
+    <script>
+    // Define the verse counts for each chapter
+    const verseCounts = {
+        '1': 47,
+        '2': 72,
+        '3': 43,
+        '4': 42,
+        '5': 29,
+        '6': 47,
+        '7': 30,
+        '8': 28,
+        '9': 34,
+        '10': 42,
+        '11': 55,
+        '12': 20,
+        '13': 35,
+        '14': 27,
+        '15': 20,
+        '16': 24,
+        '17': 28,
+        '18': 78
+    };
+
+    // Function to populate chapter options dynamically
+    function populateChapterOptions() {
+        const chapterSelect = document.getElementById('chapter-select');
+        for (const chapter in verseCounts) {
+            const option = document.createElement('option');
+            option.value = chapter;
+            option.textContent = `Chapter ${chapter}`;
+            chapterSelect.appendChild(option);
+        }
+    }
+
+    // Function to fetch data from the API
+    async function fetchSlokaAndTranslation(chapter, verse) {
+        try {
+            const response = await fetch(`https://bhagavadgitaapi.in/slok/${chapter}/${verse}/`);
+            const data = await response.json();
+
+            // Update the sloka, translation, and author text for Tej translation
+            document.getElementById('sloka-text').textContent = data.slok;
+            document.getElementById('translation-text-tej').textContent = data.tej.ht;
+            document.getElementById('author-text-tej').textContent = `Author (Tej): ${data.tej.author}`;
+
+            // Update the translation and author text for San translation
+            document.getElementById('translation-text-san').textContent = data.san.et;
+            document.getElementById('author-text-san').textContent = `Author (San): ${data.san.author}`;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+        }
+    }
+
+    // Function to update verse input max value based on the selected chapter
+    function updateMaxVerse() {
+        const selectedChapter = document.getElementById('chapter-select').value;
+        document.getElementById('verse-input').setAttribute('max', verseCounts[selectedChapter]);
+    }
+
+   // Function to handle the "Next" button click
+function handleNextButtonClick() {
+    const currentChapter = parseInt(document.getElementById('chapter-select').value);
+    const currentVerse = parseInt(document.getElementById('verse-input').value);
+    const maxVerse = verseCounts[currentChapter];
+
+    if (currentVerse < maxVerse) {
+        // If not the last verse of the current chapter, increment the verse
+        const newVerse = currentVerse + 1;
+        document.getElementById('verse-input').value = newVerse;
+        fetchSlokaAndTranslation(currentChapter, newVerse);
+    } else if (currentChapter < 18) {
+        // If the last verse of the current chapter, move to the next chapter
+        const newChapter = currentChapter + 1;
+        document.getElementById('chapter-select').value = newChapter;
+        
+        if (currentVerse === 1) {
+            // If the current verse is 1, start from verse 1 in the next chapter
+            document.getElementById('verse-input').value = 1;
+            fetchSlokaAndTranslation(newChapter, 1);
+        } else {
+            // Otherwise, stay on the current verse in the next chapter
+            fetchSlokaAndTranslation(newChapter, currentVerse);
+        }
+    }
+
+    foldContent();
+}
+
+    // Function to fold the content
+    function foldContent() {
+        const fold = document.getElementById('fold');
+        fold.style.animationDirection = 'reverse'; // Reverse the fold animation
+        fold.addEventListener('animationend', () => {
+            fold.style.animationDirection = 'normal';
+        }, { once: true });
+    }
+
+    // Populate chapter options and set up event listeners when the page loads
+    window.addEventListener('load', () => {
+        populateChapterOptions(); // Populate chapter options
+        updateMaxVerse(); // Update max verse based on the initial chapter
+        fetchSlokaAndTranslation(1, 1); // Default chapter and verse
+    });
+
+    // Event listener for chapter select change
+    document.getElementById('chapter-select').addEventListener('change', () => {
+        updateMaxVerse(); // Update max verse based on the selected chapter
+    });
+
+    // Event listener for the "Fetch" button
+    document.getElementById('fetch-button').addEventListener('click', () => {
+        const chapter = document.getElementById('chapter-select').value;
+        const verse = document.getElementById('verse-input').value.trim();
+
+        if (chapter && verse) {
+            fetchSlokaAndTranslation(chapter, verse);
+        } else {
+            alert('Please enter a valid chapter and verse.');
+        }
+    });
+
+   // Event listener for the "Prev" button
+document.getElementById('prev-button').addEventListener('click', () => {
+    const currentChapter = parseInt(document.getElementById('chapter-select').value);
+    const currentVerse = parseInt(document.getElementById('verse-input').value);
+
+    if (currentChapter === 1 && currentVerse === 1) {
+        // Already at the first verse of the first chapter, do nothing.
+        return;
+    }
+
+    let newChapter = currentChapter;
+    let newVerse = currentVerse;
+
+    if (currentVerse === 1) {
+        // If current verse is 1, move to the last verse of the previous chapter.
+        newChapter = currentChapter - 1;
+        newVerse = verseCounts[newChapter]; // Get the verse count from the verseCounts object.
+    } else {
+        // Otherwise, move to the previous verse in the same chapter.
+        newVerse = currentVerse - 1;
+    }
+
+    document.getElementById('chapter-select').value = newChapter;
+    document.getElementById('verse-input').value = newVerse;
+
+    fetchSlokaAndTranslation(newChapter, newVerse);
+
+    foldContent();
+});
+
+
+    // Event listener for the "Next" button
+    document.getElementById('next-button').addEventListener('click', handleNextButtonClick);
+
+                 // Get references to the audio element and the play/pause button
+const bgMusic = document.getElementById('bg-music');
+const playPauseButton = document.getElementById('play-pause-button');
+
+// Function to toggle music playback
+function toggleMusic() {
+    if (bgMusic.paused) {
+        bgMusic.play();
+        playPauseButton.textContent = 'Pause Flute';
+    } else {
+        bgMusic.pause();
+        playPauseButton.textContent = 'Play Flute';
+    }
+}
+
+// Event listener for the play/pause button
+playPauseButton.addEventListener('click', toggleMusic);
+// Get the back home button element by its ID
+const backHomeButton = document.getElementById('back-home-button');
+
+// Add a click event listener to the button
+backHomeButton.addEventListener('click', () => {
+    // Change the window location to "index.html" when the button is clicked
+    window.location.href = 'index.html';
+});
+
+
+</script>
+
+  
+</body>
+
+</html>

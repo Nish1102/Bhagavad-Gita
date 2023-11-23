@@ -1,0 +1,148 @@
+/* Adjust styles for smaller screens (e.g., mobile) */
+@media (max-width: 768px) {
+    .container {
+        background-size: contain;
+    }
+    header, main, footer {
+        padding: 10px;
+    }
+    #readButton {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative;
+    background: url('img/bg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh;
+}
+
+header {
+    text-align: center;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+}
+
+main {
+    text-align: center;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 10px;
+    margin: 20px;
+    position: relative; /* Add relative positioning to main */
+}
+
+
+
+/* Initial text color */
+.blinking-text {
+    color: #333;
+}
+
+/* Text color change effect */
+.text-color-change {
+    animation: changeColor 2s infinite;
+}
+
+@keyframes changeColor {
+    0%, 100% {
+        color: #333;
+    }
+    50% {
+        color: red;
+    }
+}
+
+/* Style for the footer */
+
+
+/* ... Your existing CSS code ... */
+
+/* ... Your existing CSS code ... */
+
+.marquee-container {
+    position: relative;
+    padding-top: 20px; /* Add some top padding to create space for the marquee */
+    z-index: 1; /* Ensure the marquee is below other content */
+}
+
+/* Style for the top-right marquee */
+.marquee-top-right {
+    position: absolute;
+    color: royalblue;
+    top: 10px; /* Adjust the top distance as needed */
+    right: 10px; /* Adjust the right distance as needed */
+    background: rgba(241, 192, 192, 0.5);
+    text-align: center; /* Center align text */
+    padding: 10px; /* Add some padding for spacing */
+    overflow: hidden; /* Hide overflow of the marquee */
+    z-index: 2; /* Ensure the marquee is above other content */
+}
+/* Style for the "Read Gita" button with ID */
+/* Style for the "Read Gita" button with ID */
+/* Style for the "Read Gita" button with ID */
+/* Style for the "Read Gita" button with ID */
+#readButton:hover {
+    background-color: #27b300; /* New background color on hover */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a slight shadow on hover */
+}
+/* Style for the paragraphs */
+main p {
+    margin-bottom: 20px; /* Add margin at the bottom of paragraphs to create space */
+}
+
+/* Style for the paragraphs */
+main p {
+    margin-bottom: 30px; /* Add margin at the bottom of paragraphs to create space */
+}
+
+/* Add a gap between content containers */
+        .container-gap {
+            margin-top: 20px; /* Adjust the margin as needed */
+        }
+
+        /* Style for "Read Geeta" button with ellipse shape and hover effect */
+        #readButton {
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 50px;
+            padding: 15px 30px;
+            font-size: 18px;
+            text-align: center;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+            
+    position: relative;
+    z-index: 3; /* Ensure the button is above the marquee */
+    margin-top: 20px; /* Add some top margin to create space between button and marquee */
+        }
+
+        #readButton:hover {
+            background-color: #27b300; /* Green color on hover */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a slight shadow on hover */
+        }
+/* Add a minimum height to the container to prevent overlapping */
+.container {
+    min-height: 100vh; /* Set a minimum height equal to the viewport height */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+/* Adjust the styles for the main content */
+main {
+    max-height: 95vh; /* Adjust this value as needed */
+    overflow-y: auto;
+}
+
